@@ -1,3 +1,4 @@
+from cache import load_data, save_data
 from parse_input import parse_input
 from handlers_func import (
     add_contact, 
@@ -11,7 +12,7 @@ from handlers_func import (
 from address_book import AddressBook
 
 def main():
-    book = AddressBook()
+    book = load_data()
     """Manages the main command processing cycle"""
     print(f"Welcome to the assistant bot!")
     while True:
@@ -51,6 +52,7 @@ Enter a command: """
                 print(show_upcoming_birthdays(book))
             case "exit" | "close":
                 print(f"Good bye!")
+                save_data(book)
                 break
             case _:
                 print(f"Invalid command.\n")
